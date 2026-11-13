@@ -2,183 +2,182 @@
 import { motion } from "framer-motion";
 import {
   GraduationCap,
-  BookOpen,
-  School,
   CalendarDays,
   MapPin,
-  Award,
-  Sparkles,
+  BookOpen,
 } from "lucide-react";
 
 import "../styles/Education.css";
 
-const educationData = [
+const education = [
   {
     id: "01",
-    level: "Graduation",
+    level: "UNDERGRADUATE",
     degree: "Bachelor of Technology",
-    field: "Electronics & Communication Engineering",
-    institution: "Gurukul Kangri Vishwavidyalaya, Haridwar, Uttarakhand",
-    location: "Haridwar, Uttarakhand",
-    duration: "Aug 2023 – Aug 2027",
+    specialization: "Electronics & Communication Engineering",
+    institution: "Gurukul Kangri University",
+    location: "Haridwar, Uttarakhand, India",
+    duration: "August 2023 — May 2027",
     status: "Currently Pursuing",
-    result: "In Progress",
+    result: "Expected 2027",
     icon: GraduationCap,
-    highlights: ["Electronics", "Communication", "Technology"],
+    current: true,
   },
   {
     id: "02",
-    level: "Intermediate",
-    degree: "Intermediate of Science",
-    field: "Physics, Chemistry & Mathematics",
-    institution: "DR.KK Mandal College, Ara, Bihar",
-    location: "Ara, Bihar",
-    duration: "2020",
+    level: "SENIOR SECONDARY",
+    degree: "Intermediate — Class XII",
+    specialization: "Physics, Chemistry & Mathematics (PCM)",
+    institution: "Dr. K.K. Mandal College",
+    location: "Arrah, Bihar, India",
+    duration: "January 2020 — April 2022",
     status: "Completed",
+    result: "82%",
     icon: BookOpen,
-    highlights: ["Physics", "Chemistry", "Mathematics"],
+    current: false,
   },
   {
     id: "03",
-    level: "Matriculation",
-    degree: "Secondary Education",
-    field: "Class 10",
-    institution: "SS High School, Ara, Bihar",
-    location: "Ara, Bihar",
-    duration: "2020",
+    level: "SECONDARY",
+    degree: "Matriculation — Class X",
+    specialization: "Science & Mathematics",
+    institution: "SS High School",
+    location: "Arrah, Bihar, India",
+    duration: "January 2019 — March 2020",
     status: "Completed",
-    icon: School,
-    highlights: ["Mathematics", "Science", "English"],
+    result: "83%",
+    icon: BookOpen,
+    current: false,
   },
 ];
 
-const Education = () => {
+export default function Education() {
   return (
-    <section className="education-section" id="education">
-      <div className="education-container">
+    <main className="education-page">
+      {/* HEADER */}
+      <motion.header
+        className="education-header"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.55 }}
+      >
+        <div className="education-eyebrow">
+          <span className="education-eyebrow-line" />
+          MY ACADEMIC JOURNEY
+          <span className="education-index">03 / 06</span>
+        </div>
 
-        {/* Section Heading */}
-        <motion.div
-          className="education-heading"
-          initial={{ opacity: 0, y: 25 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <span className="education-eyebrow">
-            <Sparkles size={15} />
-            MY ACADEMIC JOURNEY
-          </span>
+        <div className="education-heading-row">
+          <div>
+            <h1>
+              Education & <span>Learning.</span>
+            </h1>
+          </div>
 
-          <h2>
-            Education <span>& Background</span>
-          </h2>
+          <div className="education-header-icon">
+            <GraduationCap size={34} strokeWidth={1.4} />
+          </div>
+        </div>
+      </motion.header>
 
-          <p>
-            My academic journey, learning experiences, and educational
-            foundation that shaped my technical career.
-          </p>
-        </motion.div>
-
-        {/* Education Timeline */}
+      {/* EDUCATION CARDS */}
+      <section className="education-section">
         <div className="education-timeline">
-          {educationData.map((education, index) => {
-            const Icon = education.icon;
+          {education.map((item, index) => {
+            const Icon = item.icon;
 
             return (
               <motion.article
-                className={`education-item ${
-                  index % 2 === 0 ? "education-left" : "education-right"
+                className={`education-card ${
+                  item.current ? "education-card-current" : ""
                 }`}
-                key={education.id}
-                initial={{
-                  opacity: 0,
-                  x: index % 2 === 0 ? -40 : 40,
-                }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{
-                  duration: 0.6,
-                  delay: index * 0.15,
-                }}
+                key={item.id}
+                initial={{ opacity: 0, y: 25 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.15 }}
               >
-                {/* Timeline Marker */}
-                <div className="education-timeline-marker">
-                  <div className="education-timeline-dot">
-                    <Icon size={21} strokeWidth={1.8} />
+                {/* CARD TOP */}
+                <div className="education-card-top">
+                  <div className="education-card-icon">
+                    <Icon size={24} strokeWidth={1.6} />
                   </div>
-                </div>
 
-                {/* Education Card */}
-                <div className="education-card">
-                  <div className="education-card-top">
-                    <span className="education-number">
-                      {education.id}
+                  <div className="education-card-meta">
+                    <span className="education-level">
+                      {item.level}
                     </span>
 
                     <span
                       className={`education-status ${
-                        education.status === "Currently Pursuing"
+                        item.current
                           ? "status-current"
                           : "status-completed"
                       }`}
                     >
-                      {education.status}
+                      <span />
+                      {item.status}
                     </span>
                   </div>
 
-                  <div className="education-icon">
-                    <Icon size={34} strokeWidth={1.6} />
+                  <span className="education-card-id">
+                    {item.id}
+                  </span>
+                </div>
+
+                {/* CARD CONTENT */}
+                <div className="education-card-content">
+                  <h3>{item.degree}</h3>
+
+                  <h4>{item.specialization}</h4>
+
+                  <div className="education-institution">
+                    {item.institution}
                   </div>
 
-                  <div className="education-card-content">
-                    <span className="education-level">
-                      {education.level}
-                    </span>
-
-                    <h3>{education.degree}</h3>
-
-                    <p className="education-field">
-                      {education.field}
-                    </p>
-
-                    <div className="education-institution">
-                      <GraduationCap size={15} />
-                      <span>{education.institution}</span>
+                  <div className="education-card-details">
+                    <div>
+                      <CalendarDays size={15} />
+                      <span>{item.duration}</span>
                     </div>
 
-                    <div className="education-meta">
-                      <span>
-                        <CalendarDays size={14} />
-                        {education.duration}
-                      </span>
-
-                      <span>
-                        <MapPin size={14} />
-                        {education.location}
-                      </span>
-                    </div>
-
-                    <div className="education-highlights">
-                      {education.highlights.map((item) => (
-                        <span key={item}>{item}</span>
-                      ))}
+                    <div>
+                      <MapPin size={15} />
+                      <span>{item.location}</span>
                     </div>
                   </div>
+                </div>
 
+                {/* CARD BOTTOM */}
+                <div className="education-card-bottom">
                   <div className="education-result">
-                    <Award size={16} />
-                    <span>{education.result}</span>
+                    <span>
+                      {item.current
+                        ? "EXPECTED COMPLETION"
+                        : "ACADEMIC RESULT"}
+                    </span>
+
+                    <strong>{item.result}</strong>
                   </div>
+
+                  {item.current && (
+                    <div className="education-progress-label">
+                      <span className="education-progress-dot" />
+                      In Progress
+                    </div>
+                  )}
                 </div>
               </motion.article>
             );
           })}
         </div>
+      </section>
 
-      </div>
-    </section>
+      {/* FOOTER */}
+      <footer className="education-footer">
+        <span>VISHAL KUMAR</span>
+        <span>LEARN. BUILD. EVOLVE.</span>
+        <span>© {new Date().getFullYear()}</span>
+      </footer>
+    </main>
   );
-};
-
-export default Education;
+}

@@ -1117,3 +1117,839 @@ button:hover,
     transform: none !important;
   }
 }
+
+/* ==========================================
+   3D HOLOGRAPHIC SPHERE + ORBITAL ANIMATION
+========================================== */
+
+.v-home {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.v-background {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* ORBITAL SCENE */
+
+.v-orbit-scene {
+  position: absolute;
+  top: 350px;
+  left: 50%;
+
+  width: 520px;
+  height: 520px;
+
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  opacity: 0.48;
+  perspective: 1000px;
+}
+
+/* HOLOGRAPHIC SPHERE */
+
+.v-holo-sphere {
+  position: absolute;
+
+  width: 190px;
+  height: 190px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle at 30% 25%,
+      rgba(255, 255, 255, 0.95) 0%,
+      rgba(213, 143, 255, 0.8) 5%,
+      rgba(181, 70, 255, 0.65) 18%,
+      rgba(112, 30, 180, 0.5) 42%,
+      rgba(48, 14, 80, 0.4) 68%,
+      rgba(8, 8, 11, 0.1) 100%
+    );
+
+  box-shadow:
+    0 0 35px rgba(183, 79, 255, 0.25),
+    0 0 85px rgba(171, 67, 255, 0.20),
+    inset -20px -20px 45px rgba(0, 0, 0, 0.7),
+    inset 10px 10px 30px rgba(255, 255, 255, 0.15);
+
+  animation: sphereFloat 7s ease-in-out infinite;
+}
+
+/* SPHERE HIGHLIGHT */
+
+.v-sphere-highlight {
+  position: absolute;
+  top: 13%;
+  left: 17%;
+
+  width: 42%;
+  height: 24%;
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.35);
+  filter: blur(15px);
+
+  transform: rotate(-35deg);
+}
+
+/* SPHERE CORE */
+
+.v-sphere-core {
+  position: absolute;
+  inset: 12%;
+
+  border-radius: 50%;
+
+  border: 1px solid rgba(231, 179, 255, 0.18);
+
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.08),
+    transparent 55%,
+    rgba(255, 70, 180, 0.12)
+  );
+}
+
+/* ORBIT RINGS */
+
+.v-orbit {
+  position: absolute;
+
+  width: 340px;
+  height: 340px;
+
+  border: 1px solid rgba(200, 132, 252, 0.48);
+  border-radius: 50%;
+
+  transform-style: preserve-3d;
+
+  box-shadow:
+    0 0 15px rgba(192, 132, 252, 0.08),
+    inset 0 0 15px rgba(192, 132, 252, 0.06);
+}
+
+/* OUTER RING */
+
+.v-orbit-one {
+  width: 440px;
+  height: 440px;
+
+  border-color: rgba(192, 132, 252, 0.32);
+
+  transform: rotateX(68deg) rotateZ(0deg);
+
+  animation: orbitOne 18s linear infinite;
+}
+
+/* INNER RING */
+
+.v-orbit-two {
+  width: 300px;
+  height: 380px;
+
+  border-color: rgba(255, 115, 193, 0.42);
+
+  transform: rotateY(65deg) rotateX(20deg);
+
+  animation: orbitTwo 13s linear infinite;
+}
+
+/* FLOATING PARTICLES */
+
+.v-particle {
+  position: absolute;
+
+  width: 6px;
+  height: 6px;
+
+  border-radius: 50%;
+
+  background: #dca5ff;
+
+  box-shadow:
+    0 0 10px #c084fc,
+    0 0 20px rgba(192, 132, 252, 0.8);
+
+  animation: particleFloat 5s ease-in-out infinite;
+}
+
+.v-particle-one {
+  top: 14%;
+  left: 24%;
+}
+
+.v-particle-two {
+  top: 32%;
+  right: 13%;
+  animation-delay: -1s;
+}
+
+.v-particle-three {
+  bottom: 20%;
+  left: 17%;
+  animation-delay: -2s;
+}
+
+.v-particle-four {
+  bottom: 13%;
+  right: 25%;
+  animation-delay: -3s;
+}
+
+.v-particle-five {
+  top: 8%;
+  right: 39%;
+  width: 4px;
+  height: 4px;
+  animation-delay: -1.5s;
+}
+
+.v-particle-six {
+  bottom: 35%;
+  left: 8%;
+  width: 4px;
+  height: 4px;
+  animation-delay: -2.5s;
+}
+
+/* ==========================================
+   ANIMATION KEYFRAMES
+========================================== */
+
+@keyframes sphereFloat {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+
+  50% {
+    transform: translateY(-16px) scale(1.035);
+  }
+}
+
+@keyframes orbitOne {
+  from {
+    transform: rotateX(68deg) rotateZ(0deg);
+  }
+
+  to {
+    transform: rotateX(68deg) rotateZ(360deg);
+  }
+}
+
+@keyframes orbitTwo {
+  from {
+    transform: rotateY(65deg) rotateX(20deg) rotateZ(360deg);
+  }
+
+  to {
+    transform: rotateY(65deg) rotateX(20deg) rotateZ(0deg);
+  }
+}
+
+@keyframes particleFloat {
+  0%, 100% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0.35;
+  }
+
+  50% {
+    transform: translate3d(0, -18px, 12px);
+    opacity: 1;
+  }
+}
+
+/* KEEP HERO CONTENT ABOVE EFFECT */
+
+.v-hero {
+  position: relative;
+  z-index: 1;
+}
+
+.v-hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 768px) {
+  .v-orbit-scene {
+    top: 300px;
+    width: 390px;
+    height: 390px;
+    transform: translate(-50%, -50%) scale(0.8);
+    opacity: 0.35;
+  }
+
+  .v-holo-sphere {
+    width: 155px;
+    height: 155px;
+  }
+
+  .v-orbit-one {
+    width: 350px;
+    height: 350px;
+  }
+
+  .v-orbit-two {
+    width: 240px;
+    height: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .v-orbit-scene {
+    top: 275px;
+    transform: translate(-50%, -50%) scale(0.68);
+    opacity: 0.30;
+  }
+}
+
+/* ACCESSIBILITY */
+
+@media (prefers-reduced-motion: reduce) {
+  .v-holo-sphere,
+  .v-orbit-one,
+  .v-orbit-two,
+  .v-particle {
+    animation: none !important;
+  }
+}
+
+/* ==========================================
+   HOME PAGE — TWO COLUMN HERO REDESIGN
+   Left: Introduction
+   Right: 3D Holographic Sphere
+========================================== */
+
+/* MAIN PAGE */
+
+.v-home {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* BACKGROUND */
+
+.v-background {
+  position: absolute;
+  inset: 0 0 auto;
+  width: 100%;
+  height: 100vh;
+  min-height: 650px;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* HERO SECTION */
+
+.v-hero {
+  position: relative;
+  z-index: 1;
+
+  width: 100%;
+  min-height: 650px;
+  height: calc(100vh - 76px);
+
+  max-height: 850px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+
+  padding: 65px max(6%, calc((100% - 1200px) / 2));
+
+  text-align: left;
+}
+
+/* LEFT SIDE CONTENT */
+
+.v-hero-content {
+  position: relative;
+  z-index: 3;
+
+  width: 54%;
+  max-width: 650px;
+
+  margin: 0;
+  padding: 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  text-align: left;
+}
+
+/* EYEBROW */
+
+.v-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  margin-bottom: 24px;
+
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+}
+
+/* MAIN HEADING */
+
+.v-heading {
+  width: 100%;
+  margin: 0 0 12px;
+
+  font-size: clamp(48px, 5.3vw, 76px);
+  font-weight: 850;
+
+  line-height: 1.12;
+  letter-spacing: -3px;
+
+  text-align: left;
+}
+
+.v-heading-gradient {
+  display: inline-block;
+
+  background: linear-gradient(
+    100deg,
+    #a347f4 0%,
+    #d34fbe 50%,
+    #ff558c 100%
+  );
+
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* PROFESSION */
+
+.v-profession {
+  width: 100%;
+  margin: 0 0 25px;
+
+  font-size: clamp(24px, 2.7vw, 38px);
+  font-weight: 750;
+
+  line-height: 1.3;
+  letter-spacing: -1.2px;
+
+  color: #f8f7fc;
+
+  text-align: left;
+}
+
+/* DESCRIPTION */
+
+.v-description {
+  width: 100%;
+  max-width: 540px;
+
+  margin: 0 0 32px;
+
+  color: #aaa4b5;
+
+  font-size: 15px;
+  line-height: 1.9;
+
+  text-align: left;
+}
+
+/* BUTTONS */
+
+.v-hero-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  flex-wrap: wrap;
+  gap: 13px;
+
+  width: 100%;
+}
+
+.v-primary-btn,
+.v-secondary-btn {
+  min-height: 46px;
+  padding: 0 22px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 11px;
+
+  white-space: nowrap;
+
+  border-radius: 10px;
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    background 0.3s ease;
+}
+
+.v-primary-btn:hover,
+.v-secondary-btn:hover {
+  transform: translateY(-3px);
+}
+
+/* SCROLL INDICATOR */
+
+.v-scroll-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+
+  margin-top: 42px;
+
+  color: #aaa4b5;
+  font-size: 12px;
+
+  transition: color 0.3s ease;
+}
+
+.v-scroll-link:hover {
+  color: #c084fc;
+}
+
+/* ==========================================
+   RIGHT SIDE — 3D ORBITAL SPHERE
+========================================== */
+
+.v-orbit-scene {
+  position: absolute;
+
+  top: 340px;
+  left: 75%;
+
+  width: 540px;
+  height: 540px;
+
+  transform: translate(-50%, -50%);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  opacity: 0.75;
+
+  pointer-events: none;
+}
+
+/* SPHERE */
+
+.v-holo-sphere {
+  width: 210px;
+  height: 210px;
+}
+
+/* OUTER ORBIT */
+
+.v-orbit-one {
+  width: 450px;
+  height: 450px;
+}
+
+/* INNER ORBIT */
+
+.v-orbit-two {
+  width: 310px;
+  height: 390px;
+}
+
+/* FLOATING PARTICLES */
+
+.v-particle {
+  z-index: 2;
+}
+
+/* FOOTER */
+
+.v-footer {
+  position: absolute;
+
+  bottom: 0;
+  left: 50%;
+
+  width: 100%;
+  max-width: 1200px;
+
+  transform: translateX(-50%);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 18px 0;
+
+  border-top: 1px solid rgba(255,255,255,0.07);
+
+  color: #77717f;
+  font-size: 12px;
+}
+
+/* ==========================================
+   FEATURED WORK
+========================================== */
+
+.v-featured-anchor {
+  position: relative;
+  z-index: 2;
+
+  min-height: 350px;
+  padding: 100px 8%;
+
+  background: #09090b;
+}
+
+.v-featured-anchor > div {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ==========================================
+   LAPTOP / SMALL DESKTOP
+========================================== */
+
+@media (max-width: 1100px) {
+
+  .v-hero {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+
+  .v-hero-content {
+    width: 56%;
+  }
+
+  .v-heading {
+    font-size: clamp(43px, 5.4vw, 62px);
+    letter-spacing: -2px;
+  }
+
+  .v-profession {
+    font-size: clamp(24px, 3vw, 32px);
+  }
+
+  .v-orbit-scene {
+    left: 77%;
+    transform: translate(-50%, -50%) scale(0.85);
+  }
+
+  .v-footer {
+    width: 90%;
+  }
+}
+
+/* ==========================================
+   TABLET
+========================================== */
+
+@media (max-width: 800px) {
+
+  .v-hero {
+    min-height: 680px;
+    height: auto;
+
+    padding: 100px 5% 90px;
+  }
+
+  .v-hero-content {
+    width: 62%;
+  }
+
+  .v-heading {
+    font-size: clamp(42px, 6vw, 56px);
+  }
+
+  .v-profession {
+    font-size: 27px;
+  }
+
+  .v-description {
+    font-size: 14px;
+  }
+
+  .v-orbit-scene {
+    left: 79%;
+    top: 340px;
+
+    transform: translate(-50%, -50%) scale(0.68);
+    opacity: 0.55;
+  }
+
+  .v-footer {
+    width: 90%;
+  }
+}
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 600px) {
+
+  .v-hero {
+    min-height: 760px;
+    height: auto;
+    max-height: none;
+
+    padding: 90px 22px 100px;
+
+    align-items: center;
+    justify-content: flex-start;
+
+    text-align: center;
+  }
+
+  .v-hero-content {
+    width: 100%;
+    max-width: 480px;
+
+    align-items: center;
+    text-align: center;
+  }
+
+  .v-eyebrow {
+    justify-content: center;
+    margin-bottom: 23px;
+  }
+
+  .v-heading {
+    text-align: center;
+    font-size: clamp(40px, 10vw, 55px);
+    letter-spacing: -2px;
+  }
+
+  .v-profession {
+    text-align: center;
+    font-size: clamp(23px, 6vw, 30px);
+    letter-spacing: -0.7px;
+  }
+
+  .v-description {
+    max-width: 440px;
+    text-align: center;
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  .v-hero-buttons {
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .v-primary-btn,
+  .v-secondary-btn {
+    min-height: 45px;
+    padding: 0 17px;
+    font-size: 12px;
+  }
+
+  .v-scroll-link {
+    margin-top: 30px;
+    justify-content: center;
+  }
+
+  /* SPHERE MOVES BELOW CONTENT */
+
+  .v-orbit-scene {
+    top: 510px;
+    left: 50%;
+
+    transform: translate(-50%, -50%) scale(0.62);
+
+    opacity: 0.27;
+  }
+
+  .v-footer {
+    width: calc(100% - 40px);
+
+    flex-direction: column;
+    justify-content: center;
+    gap: 7px;
+
+    padding: 15px 0;
+
+    font-size: 10px;
+    text-align: center;
+  }
+
+  .v-featured-anchor {
+    padding: 75px 24px;
+  }
+}
+
+/* ==========================================
+   SMALL IPHONE / MOBILE
+========================================== */
+
+@media (max-width: 380px) {
+
+  .v-hero {
+    padding: 80px 17px 100px;
+    min-height: 720px;
+  }
+
+  .v-heading {
+    font-size: 39px;
+  }
+
+  .v-profession {
+    font-size: 22px;
+  }
+
+  .v-description {
+    font-size: 13px;
+  }
+
+  .v-hero-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .v-primary-btn,
+  .v-secondary-btn {
+    width: 100%;
+    max-width: 260px;
+  }
+
+  .v-orbit-scene {
+    top: 490px;
+    transform: translate(-50%, -50%) scale(0.52);
+  }
+
+  .v-footer {
+    font-size: 9px;
+  }
+}
+
+/* REDUCED MOTION */
+
+@media (prefers-reduced-motion: reduce) {
+  .v-orbit-scene,
+  .v-holo-sphere,
+  .v-orbit,
+  .v-particle {
+    animation: none !important;
+  }
+}

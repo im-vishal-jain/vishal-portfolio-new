@@ -1,18 +1,32 @@
 
 /* =========================================
    VISHAL KUMAR PORTFOLIO
-   GLOBAL STYLES
+   PREMIUM GLOBAL STYLES
+   Dark Charcoal + Purple Accent
 ========================================= */
+
+/* GLOBAL VARIABLES */
 
 :root {
   font-family: Inter, "Segoe UI", Arial, sans-serif;
-  color: #f8f7fc;
-  background: #09090b;
+
+  --portfolio-bg: #09090b;
+  --portfolio-surface: #101014;
+  --portfolio-accent: #c084fc;
+  --portfolio-text: #f8f7fc;
+  --portfolio-muted: #a09aaa;
+  --portfolio-border: rgba(255, 255, 255, 0.08);
+
+  color: var(--portfolio-text);
+  background: var(--portfolio-bg);
+
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+/* UNIVERSAL RESET */
 
 *,
 *::before,
@@ -24,38 +38,72 @@ html {
   width: 100%;
   min-width: 320px;
   min-height: 100%;
+
   margin: 0;
   padding: 0;
+
   scroll-behavior: smooth;
-  scrollbar-color: #7540a7 #09090b;
+  background: var(--portfolio-bg);
+
+  scrollbar-color: #7540a7 var(--portfolio-bg);
+  scrollbar-width: thin;
 }
+
+/* BODY */
 
 body {
   width: 100%;
   min-width: 320px;
+
   min-height: 100vh;
   min-height: 100dvh;
+
   margin: 0;
   padding: 0;
+
   overflow-x: hidden;
-  background: #09090b;
+
+  color: var(--portfolio-text);
+  background: var(--portfolio-bg);
 }
+
+/* ROOT */
 
 #root {
   width: 100%;
-  max-width: none !important;
+  max-width: none;
+
   min-height: 100vh;
   min-height: 100dvh;
-  margin: 0 !important;
-  padding: 0 !important;
+
+  margin: 0;
+  padding: 0;
+
   overflow-x: clip;
+  background: var(--portfolio-bg);
 }
+
+/* NAVBAR GLOBAL BACKGROUND */
+
+.portfolio-navbar {
+  background: var(--portfolio-bg) !important;
+
+  border-bottom: 1px solid var(--portfolio-border);
+
+  box-shadow: none !important;
+}
+
+/* GLOBAL TYPOGRAPHY */
 
 button,
 input,
 textarea,
 select {
   font: inherit;
+}
+
+button {
+  cursor: pointer;
 }
 
 button,
@@ -68,25 +116,61 @@ a {
   text-decoration: none;
 }
 
+/* MEDIA */
+
 img,
 video {
   display: block;
   max-width: 100%;
 }
 
-button {
-  cursor: pointer;
-}
+/* TEXT SELECTION */
 
 ::selection {
   color: #ffffff;
   background: #9333ea;
 }
 
+/* ACCESSIBILITY */
+
 :focus-visible {
-  outline: 2px solid #c084fc;
+  outline: 2px solid var(--portfolio-accent);
   outline-offset: 3px;
 }
+
+/* CUSTOM SCROLLBAR */
+
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--portfolio-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(192, 132, 252, 0.35);
+  border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #c084fc;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 768px) {
+  html,
+  body {
+    min-width: 320px;
+  }
+
+  #root {
+    overflow-x: clip;
+  }
+}
+
+/* REDUCED MOTION */
 
 @media (prefers-reduced-motion: reduce) {
   *,

@@ -17,10 +17,36 @@ export default function Home() {
       <div className="v-background" aria-hidden="true">
         <div className="v-glow v-glow-purple" />
         <div className="v-glow v-glow-pink" />
+
+        {/* 3D HOLOGRAPHIC ORBITAL SYSTEM */}
+        <div className="v-orbit-scene">
+
+          {/* OUTER ORBIT */}
+          <div className="v-orbit v-orbit-one" />
+
+          {/* INNER ORBIT */}
+          <div className="v-orbit v-orbit-two" />
+
+          {/* HOLOGRAPHIC SPHERE */}
+          <div className="v-holo-sphere">
+            <div className="v-sphere-highlight" />
+            <div className="v-sphere-core" />
+          </div>
+
+          {/* FLOATING PARTICLES */}
+          <span className="v-particle v-particle-one" />
+          <span className="v-particle v-particle-two" />
+          <span className="v-particle v-particle-three" />
+          <span className="v-particle v-particle-four" />
+          <span className="v-particle v-particle-five" />
+          <span className="v-particle v-particle-six" />
+
+        </div>
       </div>
 
-      {/* HERO */}
+      {/* HERO SECTION */}
       <section className="v-hero">
+
         <motion.div
           className="v-hero-content"
           initial={{ opacity: 0, y: 28 }}
@@ -37,16 +63,19 @@ export default function Home() {
             {personalInfo.availability}
           </p>
 
+          {/* MAIN HEADING */}
           <h1 className="v-heading">
             <span className="v-heading-gradient">
               Hi, I'm Vishal
             </span>
           </h1>
 
+          {/* PROFESSION */}
           <h2 className="v-profession">
             AI Engineer &amp; Data Scientist
           </h2>
 
+          {/* DESCRIPTION */}
           <p className="v-description">
             Welcome to my portfolio. I build intelligent
             applications, develop machine learning solutions,
@@ -56,6 +85,7 @@ export default function Home() {
 
           {/* CTA BUTTONS */}
           <div className="v-hero-buttons">
+
             <Link to="/projects" className="v-primary-btn">
               View My Projects
               <ArrowRight size={17} />
@@ -64,6 +94,7 @@ export default function Home() {
             <Link to="/contact" className="v-secondary-btn">
               Get In Touch
             </Link>
+
           </div>
 
           {/* SCROLL INDICATOR */}
@@ -71,26 +102,18 @@ export default function Home() {
             <span>Scroll to explore</span>
             <ArrowDown size={14} />
           </a>
+
         </motion.div>
 
-        {/* BOTTOM FOOTER */}
-        <footer className="v-footer">
-          <span>
-            © {new Date().getFullYear()} Vishal Kumar
-          </span>
-
-          <span>
-            AI Engineer · Data Analyst · Data Scientist
-          </span>
-        </footer>
       </section>
 
-      {/* FEATURED WORK */}
+      {/* FEATURED WORK SECTION */}
       <section
         id="featured-work"
         className="v-featured-anchor"
       >
         <div>
+
           <span>01 / SELECTED WORK</span>
 
           <h2>Building Ideas Into Reality.</h2>
@@ -103,6 +126,7 @@ export default function Home() {
             Explore Projects
             <ArrowUpRight size={16} />
           </Link>
+
         </div>
       </section>
 

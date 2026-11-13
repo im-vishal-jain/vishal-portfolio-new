@@ -1,9 +1,7 @@
 
 import {
   Award,
-  BadgeCheck,
-  CalendarDays,
-  ExternalLink,
+  ArrowUpRight,
   ShieldCheck,
 } from "lucide-react";
 
@@ -12,165 +10,134 @@ import "../styles/Certifications.css";
 const certifications = [
   {
     id: "01",
-    category: "DATA ANALYTICS",
-    title: "Data Analysis with Python",
+    category: "DATA FUNDAMENTALS",
+    title: "Data Fundamentals",
     organization: "IBM SkillsBuild",
-    issueDate: "November 2025",
-    credentialId: "Add Credential ID",
-    description:
-      "Professional learning certification focused on data analysis using Python.",
-    skills: ["Python", "Data Analysis", "Pandas", "Data Visualization"],
-    status: "Completed",
-    side: "left",
-    credentialUrl: "",
+    date: "August 29, 2025",
+    credentialUrl:
+      "https://drive.google.com/file/d/1j9GpmBfe5QSiwb06W_9E-yfYxEd9O5GL/view",
+    featured: true,
+  },
+  {
+    id: "02",
+    category: "PYTHON & DATA SCIENCE",
+    title: "Python 101 for Data Science",
+    organization: "IBM SkillsBuild",
+    date: "November 27, 2025",
+    credentialUrl:
+      "https://drive.google.com/file/d/1fEViT6InW-d2LRA5_b1lIrU94D5qi5g3/view",
+    featured: true,
+  },
+  {
+    id: "03",
+    category: "CERTIFICATION",
+    title: "Add Certificate Name",
+    organization: "Add Organization",
+    date: "Add Issue Date",
+    credentialUrl:
+      "https://drive.google.com/file/d/14gFyklKV4QaKdi0fPKYMWtXIgM9k5K3O/view",
+    featured: false,
   },
 ];
 
 export default function Certifications() {
   return (
     <main className="certifications-page">
-      <div className="certifications-background">
-        <div className="certifications-glow" />
-        <div className="certifications-grid" />
-      </div>
 
-      <div className="certifications-container">
+      {/* PREMIUM HERO HEADING */}
+      <header className="certifications-heading">
 
-        {/* PAGE HEADER */}
-        <header className="certifications-header">
-          <span className="certifications-eyebrow">
-            <span className="certifications-dot" />
-            MY ACHIEVEMENTS
-          </span>
-
-          <h1>
-            Certifications <span>& Credentials</span>
-          </h1>
-
-          <p>
-            Professional certifications and continuous learning that
-            strengthen my technical knowledge and expertise.
-          </p>
-        </header>
-
-        {/* SECTION HEADING */}
-        <div className="certification-section-heading">
-          <div>
-            <span>LEARNING JOURNEY</span>
-            <h2>My Certifications</h2>
-          </div>
-
-          <span className="certification-total">
-            {certifications.length.toString().padStart(2, "0")} CREDENTIAL
-          </span>
+        <div className="cert-heading-label">
+          <span className="cert-heading-line" />
+          <span className="cert-heading-dot" />
+          PROFESSIONAL JOURNEY
+          <span className="cert-heading-dot" />
+          <span className="cert-heading-line" />
         </div>
 
-        {/* CERTIFICATION TIMELINE */}
-        <section className="certification-timeline">
-          <div className="certification-timeline-line" />
+        <h1 className="cert-heading-title">
+          My <span>Certifications</span>
+          <span className="cert-heading-period">.</span>
+        </h1>
 
-          {certifications.map((cert) => (
-            <div
-              className={`certification-timeline-row ${cert.side}`}
-              key={cert.id}
-            >
-              <article className="certification-card">
+        <div className="cert-heading-bottom">
+          <span className="cert-heading-accent" />
+          <span>LEARNING • GROWTH • RECOGNITION</span>
+          <span className="cert-heading-accent" />
+        </div>
 
-                {/* CARD TOP */}
-                <div className="certification-card-top">
-                  <span className="certification-number">
-                    {cert.id}
-                  </span>
+      </header>
 
-                  <span className="certification-status">
-                    <BadgeCheck size={12} />
-                    {cert.status}
-                  </span>
-                </div>
+      {/* CERTIFICATION CARDS */}
+      <section className="certifications-grid-cards">
 
-                {/* CERTIFICATE ICON */}
-                <div className="certification-icon">
-                  <Award size={25} strokeWidth={1.8} />
-                </div>
+        {certifications.map((cert) => (
+          <article
+            className="certification-card"
+            key={cert.id}
+          >
 
-                {/* CERTIFICATE DETAILS */}
-                <span className="certification-category">
-                  {cert.category}
+            <div className="certification-top">
+              <span className="certification-number">
+                {cert.id}
+              </span>
+
+              {cert.featured && (
+                <span className="certification-featured">
+                  FEATURED
                 </span>
-
-                <h3>{cert.title}</h3>
-
-                <p className="certification-organization">
-                  {cert.organization}
-                </p>
-
-                {/* META INFORMATION */}
-                <div className="certification-meta">
-                  <div>
-                    <CalendarDays size={14} />
-                    <span>{cert.issueDate}</span>
-                  </div>
-
-                  <div>
-                    <ShieldCheck size={14} />
-                    <span>{cert.credentialId}</span>
-                  </div>
-                </div>
-
-                {/* DESCRIPTION */}
-                <p className="certification-description">
-                  {cert.description}
-                </p>
-
-                {/* SKILLS */}
-                <div className="certification-skills">
-                  {cert.skills.map((skill) => (
-                    <span key={skill}>{skill}</span>
-                  ))}
-                </div>
-
-                {/* CARD FOOTER */}
-                <div className="certification-card-bottom">
-                  {cert.credentialUrl ? (
-                    <a
-                      href={cert.credentialUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="certification-link"
-                    >
-                      View Credential
-                      <ExternalLink size={14} />
-                    </a>
-                  ) : (
-                    <span className="certification-no-link">
-                      Credential link not added
-                    </span>
-                  )}
-
-                  <span className="certification-watermark">
-                    {cert.id}
-                  </span>
-                </div>
-
-              </article>
-
-              {/* TIMELINE MARKER */}
-              <div className="certification-timeline-marker">
-                <Award size={21} />
-              </div>
-
-              <div className="certification-timeline-empty" />
+              )}
             </div>
-          ))}
-        </section>
 
-        {/* FOOTER */}
-        <footer className="certifications-footer">
-          <span>© {new Date().getFullYear()} Vishal Kumar</span>
-          <span>Designed & Built with passion.</span>
-        </footer>
+            <div className="certification-icon">
+              <Award size={29} strokeWidth={1.6} />
+              <div className="certification-icon-glow" />
+            </div>
 
-      </div>
+            <div className="certification-content">
+
+              <span className="certification-category">
+                {cert.category}
+              </span>
+
+              <h3>{cert.title}</h3>
+
+              <p className="certification-organization">
+                {cert.organization}
+              </p>
+
+              <span className="certification-date">
+                {cert.date}
+              </span>
+
+            </div>
+
+            <div className="certification-divider" />
+
+            <div className="certification-footer">
+
+              <span className="certification-verified">
+                <ShieldCheck size={15} />
+                VERIFIED CREDENTIAL
+              </span>
+
+              <a
+                href={cert.credentialUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="certification-link"
+              >
+                VIEW CREDENTIAL
+                <ArrowUpRight size={16} />
+              </a>
+
+            </div>
+
+          </article>
+        ))}
+
+      </section>
+
     </main>
   );
 }

@@ -8,7 +8,6 @@ import {
   GraduationCap,
   Workflow,
   Layers3,
-  Code2,
   ExternalLink,
 } from "lucide-react";
 
@@ -21,9 +20,8 @@ const projectsData = [
     category: "Generative AI",
     subtitle: "AI-Powered Career Assistant",
     description:
-      "An intelligent career assistant that helps users analyze resumes, explore job opportunities, and receive AI-powered career guidance.",
+      "An intelligent career assistant for resume analysis, job discovery, skill-gap intelligence and personalized career guidance.",
     icon: BriefcaseBusiness,
-    technologies: ["Python", "Streamlit", "LangChain", "FAISS", "LLMs"],
     featured: true,
   },
   {
@@ -32,9 +30,8 @@ const projectsData = [
     category: "AI & Education",
     subtitle: "Personalized Learning Platform",
     description:
-      "An AI-powered learning platform designed to deliver personalized learning experiences, intelligent assistance, and learning recommendations.",
+      "An AI-powered learning platform offering personalized learning experiences, intelligent assistance and recommendations.",
     icon: GraduationCap,
-    technologies: ["Python", "Streamlit", "Generative AI", "LLMs"],
     featured: false,
   },
   {
@@ -43,9 +40,8 @@ const projectsData = [
     category: "AI Engineering",
     subtitle: "Intelligent Architecture Designer",
     description:
-      "An AI-powered system design platform that helps generate architecture diagrams, explore design decisions, and understand scalable systems.",
+      "An intelligent platform for generating architecture diagrams and exploring scalable system design decisions.",
     icon: Workflow,
-    technologies: ["Python", "LangGraph", "LLMs", "Mermaid"],
     featured: true,
   },
   {
@@ -54,9 +50,8 @@ const projectsData = [
     category: "Web Development",
     subtitle: "Intelligent SaaS Platform",
     description:
-      "A modern SaaS platform with an interactive dashboard, system management, integrations, and visual graph exploration.",
+      "A modern SaaS experience featuring interactive dashboards, system management, integrations and graph exploration.",
     icon: Layers3,
-    technologies: ["React", "TypeScript", "Vite", "CSS"],
     featured: false,
   },
 ];
@@ -65,24 +60,20 @@ function Projects() {
   return (
     <main className="projects-page">
 
-      {/* Background */}
       <div className="projects-background">
-        <div className="projects-background-glow projects-background-glow-one" />
-        <div className="projects-background-glow projects-background-glow-two" />
+        <div className="projects-background-glow glow-one" />
+        <div className="projects-background-glow glow-two" />
         <div className="projects-background-grid" />
       </div>
 
-      {/* Logo */}
       <header className="projects-topbar">
         <Link to="/" className="projects-brand-mark">
           VK
         </Link>
       </header>
 
-      {/* Projects Section */}
       <section className="projects-showcase">
 
-        {/* Heading */}
         <motion.div
           className="projects-heading"
           initial={{ opacity: 0, y: 25 }}
@@ -99,89 +90,63 @@ function Projects() {
           </h1>
 
           <p>
-            A collection of projects where I transform ideas into
-            practical applications using AI, technology, and software development.
+            A collection of ideas transformed into practical
+            digital experiences through AI, engineering and software development.
           </p>
         </motion.div>
 
-        {/* Projects Timeline */}
-        <div className="projects-timeline">
+        <div className="projects-grid">
 
           {projectsData.map((project, index) => {
             const Icon = project.icon;
 
             return (
               <motion.article
-                className={`projects-item ${
-                  index % 2 === 0 ? "projects-left" : "projects-right"
-                }`}
                 key={project.id}
-                initial={{
-                  opacity: 0,
-                  x: index % 2 === 0 ? -40 : 40,
-                }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
+                className={`project-card project-card-${index + 1}`}
+                initial={{ opacity: 0, y: 35 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.15 }}
                 transition={{
-                  duration: 0.6,
-                  delay: index * 0.12,
+                  duration: 0.55,
+                  delay: index * 0.1,
                 }}
+                whileHover={{ y: -8 }}
               >
 
-                {/* Timeline Marker */}
-                <div className="projects-timeline-marker">
-                  <div className="projects-timeline-dot">
-                    <Icon size={21} strokeWidth={1.8} />
-                  </div>
+                <div className="project-card-top">
+                  <span className="project-card-number">
+                    {project.id}
+                  </span>
+
+                  {project.featured && (
+                    <span className="project-featured">
+                      FEATURED
+                    </span>
+                  )}
                 </div>
 
-                {/* Project Card */}
-                <div className="projects-card">
-
-                  <div className="projects-card-top">
-                    <span className="projects-number">
-                      {project.id}
-                    </span>
-
-                    <div className="projects-card-badges">
-                      {project.featured && (
-                        <span className="projects-featured">
-                          FEATURED
-                        </span>
-                      )}
-
-                      <span className="projects-category">
-                        {project.category}
-                      </span>
-                    </div>
-                  </div>
-
-                  <div className="projects-card-icon">
-                    <Icon size={38} strokeWidth={1.6} />
-                  </div>
-
-                  <div className="projects-card-content">
-                    <span className="projects-subtitle">
-                      {project.subtitle}
-                    </span>
-
-                    <h2>{project.title}</h2>
-
-                    <p>{project.description}</p>
-                  </div>
-
-                  <div className="projects-technologies">
-                    {project.technologies.map((technology) => (
-                      <span key={technology}>{technology}</span>
-                    ))}
-                  </div>
-
-                  <div className="projects-card-footer">
-                    <span>Project Overview</span>
-                    <ExternalLink size={16} />
-                  </div>
-
+                <div className="project-card-icon">
+                  <Icon size={52} strokeWidth={1.7} />
                 </div>
+
+                <span className="project-category">
+                  {project.category}
+                </span>
+
+                <h2>{project.title}</h2>
+
+                <h3>{project.subtitle}</h3>
+
+                <p className="project-description">
+                  {project.description}
+                </p>
+
+                <div className="project-card-footer">
+                  <span>PROJECT OVERVIEW</span>
+                  <ExternalLink size={16} />
+                </div>
+
               </motion.article>
             );
           })}
